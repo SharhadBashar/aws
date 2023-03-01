@@ -1,2 +1,2 @@
-# aws
-aws functionality using Python
+# AWS
+AWS S3 functionalities using Python
