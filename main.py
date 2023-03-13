@@ -29,24 +29,19 @@ if __name__ == '__main__':
         exit()
     
     if (command == '-h' or command == 'help'):
-        pprint(
-            'These are the available commands:\
-            \
-            -i info: prints all buckets\
-            \
-            -i info bucket_name: prints all files in the bucket\
-            \
-            -di detailed_info: prints all buckets and files in each bucket\
-            \
-            -c create bucket_name: creates a bucket with the bucket name\
-            \
-            -u upload file bucket: uploads file into bucket\
-            \
-            -db download_bucket bucket_name download_path: downloads bucket to download_path\
-            \
-            -d download file bucket_name download_path: downloads file from bucket to download_path'
-        ) 
+        print()
+        print('Welcome to the python AWS S3 library')
+        print()
+        print('These are the available commands:\n')
+        print('-i info: prints all buckets')
+        print('-i info bucket_name: prints all files in the bucket')
+        print('-di detailed_info: prints all buckets and files in each bucket\n')
         
+        print('-c create bucket_name: creates a bucket with the bucket name\n')
+        print('-u upload file bucket: uploads file into bucket')
+        print('-db download_bucket bucket_name download_path: downloads bucket to download_path')
+        print('-d download file bucket_name download_path: downloads file from bucket to download_path') 
+        print()
     if (command == '-i' or command == 'info'):
         try:
             bucket = sys.argv[2]
