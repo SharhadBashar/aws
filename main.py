@@ -21,6 +21,7 @@ from pprint import pprint
 from s3 import S3
 
 if __name__ == '__main__':
+    print()
     s3 = S3()
     try:
         command = sys.argv[1].lower()
@@ -29,7 +30,6 @@ if __name__ == '__main__':
         exit()
     
     if (command == '-h' or command == 'help'):
-        print()
         print('Welcome to the python AWS S3 library')
         print()
         print('These are the available commands:\n')
