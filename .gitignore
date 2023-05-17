@@ -1,0 +1,5 @@
+/models
+/sagemaker_test/model.joblib
+/sagemaker_test/model.tar.gz
+notebook/model_en.joblib
+notebook/model_en.tar.gz
