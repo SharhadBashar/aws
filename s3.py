@@ -10,11 +10,7 @@ from botocore.exceptions import ClientError
 class S3:
     def __init__(self):
         self.s3_client = boto3.client('s3')
-        self.s3_resource = boto3.resource('s3')
-    
-    def get_info(self, bucket, file_name):
-        return self.s3_resource.Object(bucket, file_name)
-    
+        
     def create_bucket(self, bucket_name, region = None):
         try:
             if region is None:
@@ -80,7 +76,7 @@ class S3:
                 file_name,
                 str(file_path)
             )
-            
+
     def download_bucket(self, bucket, download_path = None):
         if not download_path or download_path == '/':
             download_path = bucket
@@ -88,8 +84,11 @@ class S3:
             os.mkdir(download_path)
         files = self.s3_client.list_objects(Bucket = bucket)['Contents']
         for file in tqdm(files):
-            self.s3_client.download_file(bucket, file['Key'], os.path.join(download_path, file['Key']))
-            
+            path, filename = os.path.split(file['Key'])
+            if not os.path.exists(os.path.join(download_path, path)):
+                os.makedirs(os.path.join(download_path, path))
+            self.s3_client.download_file(bucket, file['Key'], os.path.join(download_path, path, filename))
+
     def download_file(self, file, bucket, download_path = None):
         if not download_path or download_path == '/':
             download_path = bucket
@@ -119,7 +118,6 @@ class S3:
         my_bucket = s3.Bucket(bucket_name)
         for object_summary in my_bucket.objects.filter():
             print(f'-- {object_summary.key}')
-        print()
         
 if __name__ == '__main__':
     s3 = S3()

@@ -41,7 +41,6 @@ if __name__ == '__main__':
         print('-u upload file bucket: uploads file into bucket')
         print('-db download_bucket bucket_name download_path: downloads bucket to download_path')
         print('-d download file bucket_name download_path: downloads file from bucket to download_path') 
-        print()
     if (command == '-i' or command == 'info'):
         try:
             bucket = sys.argv[2]
@@ -50,7 +49,7 @@ if __name__ == '__main__':
             s3.print_buckets()
     
     if (command == '-di' or command == 'detailed_info'):
-        for bucket in s3.get_buckets(s3):
+        for bucket in s3.get_buckets():
             print('Bucket Name:', bucket)
             s3.print_files_in_buckets(bucket)
             
@@ -89,3 +88,4 @@ if __name__ == '__main__':
             exit()
         download_path = sys.argv[4] if len(sys.argv) > 4 else bucket
         s3.download_file(file, bucket, download_path = download_path)
+    print()
